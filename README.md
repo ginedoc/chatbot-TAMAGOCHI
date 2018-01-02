@@ -4,7 +4,7 @@
 pip install -r requirements.txt
 
 ## FSM
-* ![](./img/show-fsm.jpg)
+* ![fsm](./img/show-fsm.png)
 
 ## desctiption
 

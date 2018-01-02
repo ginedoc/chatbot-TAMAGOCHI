@@ -31,7 +31,7 @@ class TocMachine(GraphMachine):
             **machine_configs
         )
     
-    guess_number = 0
+    guess_number = 3
 
     # new
     def is_going_to_state0(self, update):
@@ -131,7 +131,6 @@ class TocMachine(GraphMachine):
         return text.lower() == '13'
 
     def on_enter_state13(self, update):
-        guess_number = random.randint(1,20)
         update.message.reply_text("請從1~20中猜一個數字\n")
 
     def is_going_to_state15(self, update):
@@ -146,6 +145,7 @@ class TocMachine(GraphMachine):
         return text.lower() == str(guess_number)
     def on_enter_state16(self, update):
         update.message.reply_text("你好棒")
+        self.go_back(update)
 
     # back to option
     def is_going_to_state10(self, update):

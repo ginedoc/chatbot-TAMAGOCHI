@@ -152,9 +152,7 @@ machine = TocMachine(
         # option B
         {
             'trigger': 'advance',
-            'source': [
-                'state2',
-                ],
+            'source': 'state2',
             'dest': 'state12',
             'conditions': 'is_going_to_state12'
                 },
@@ -195,7 +193,7 @@ machine = TocMachine(
                 'state15',
                 'state16',
                 ],
-            'dest': 'state13'
+            'dest': 'state12'
                 },
     ],
     initial = 'state0',

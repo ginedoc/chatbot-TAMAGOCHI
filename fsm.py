@@ -30,6 +30,9 @@ class TocMachine(GraphMachine):
             **machine_configs
         )
 
+    def on_enter_state0(self, update):
+        update.message.reply_text("on state 0")
+
     # new
     def is_going_to_state1(self, update):
         text = update.message.text
@@ -42,7 +45,6 @@ class TocMachine(GraphMachine):
         ret = TAMAGOCHI() + "\n來與蛋子做點事情吧\n開始冒險?[y/n]\n"
         update.message.reply_text(ret)
 
-#    def on_exit_intro(self, update):
 
     # intro
     def is_going_to_state2(self, update):
@@ -50,7 +52,10 @@ class TocMachine(GraphMachine):
         return text.lower() == 'y'
     
     def on_enter_state2(self, update):
-        update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        if Lp<0 or Hp<0 or Lk<0:
+            self.go_back(update)
+        else:
+            update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
     
     # A
     def is_going_to_state3(self, update):
@@ -104,6 +109,7 @@ class TocMachine(GraphMachine):
 
     # DIE
     def on_enter_DIE(self, update):
+        update.message.reply_text("DIE")
         self.go_back(update)
 
     # back to option
@@ -112,7 +118,10 @@ class TocMachine(GraphMachine):
             print("Lp<50")
         else: 
             print("Lp>50")
-        self.go_back(update)
+        text = update.message.text
+        return text.lower() == '10'
 
+    def on_enter_state10(self, update):
+        self.go_back(update)
 
 

@@ -8,8 +8,9 @@ from flask import Flask, request, send_file
 from fsm import TocMachine
 
 
+
 API_TOKEN = '374041751:AAHZKYm_SFiSDz7nZEsURqRyblxDnbTB_v0'
-WEBHOOK_URL = 'https://5978efb8.ngrok.io/hook'
+WEBHOOK_URL = 'https://d98263d6.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -57,12 +58,6 @@ machine = TocMachine(
             'dest': 'state2', 
             'conditions': 'is_going_to_state2'
             },
-        {
-            'trigger': 'advance', 
-            'source': 'state2', 
-            'dest': 'state3', 
-            'conditions': 'is_going_to_state3'
-            },
         # A
         {
             'trigger': 'advance',
@@ -86,6 +81,7 @@ machine = TocMachine(
         {
             'trigger': 'advance', 
             'source': [
+                'state2',
                 'state4', 
                 'state5',
                 'state6',
@@ -110,24 +106,33 @@ machine = TocMachine(
             'dest': 'state6',
             'conditions': 'is_going_to_state6',
             },
+        # D
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state7',
             'conditions': 'is_going_to_state7',
             },
+        # E
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state8',
             'conditions': 'is_going_to_state8',
             },
+        # F
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state9',
             'conditions': 'is_going_to_state9',
             },
+        # DIE
+        {
+            'trigger': 'go_back',
+            'source': 'state2',
+            'dest': 'DIE',
+                },
         # go back
         {     
             'trigger': 'go_back',
@@ -141,11 +146,6 @@ machine = TocMachine(
             'trigger': 'go_back',
             'source': 'state10',
             'dest': 'state2',
-            },
-        {
-                'trigger': 'go_back',
-                'source': 'state2',
-                'dest': 'DIE',
             },
     ],
     initial = 'state0',

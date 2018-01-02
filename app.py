@@ -43,10 +43,10 @@ machine = TocMachine(
         'state9',
         'state10',
         'state11',
-        'state12',
-        'state13',
-        'state15',
-        'state16',
+#        'state12',
+#        'state13',
+#        'state15',
+#        'state16',
     ],
     transitions=[
         # intro

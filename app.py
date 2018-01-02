@@ -1,4 +1,4 @@
-import imp
+#import imp
 import sys
 from io import BytesIO
 
@@ -10,7 +10,7 @@ from fsm import TocMachine
 
 
 API_TOKEN = '374041751:AAHZKYm_SFiSDz7nZEsURqRyblxDnbTB_v0'
-WEBHOOK_URL = 'https://0d2d6cae.ngrok.io/hook'
+WEBHOOK_URL = 'https://4eecc64a.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -43,9 +43,6 @@ machine = TocMachine(
         'state9',
         'state10',
         'state11',
-        'state12',
-        'state13',
-        'state16',
     ],
     transitions=[
         # intro
@@ -57,11 +54,7 @@ machine = TocMachine(
             },
         {
             'trigger': 'advance', 
-            'source': [
-                'state0',
-                'state3',
-  #              'state12'
-                ],
+            'source': 'state0', 
             'dest': 'state2', 
             'conditions': 'is_going_to_state2'
             },
@@ -147,25 +140,6 @@ machine = TocMachine(
 	    'dest': 'state0',
 	    'conditions': 'is_going_to_state0',
 		},
-        # option B
-        {
-            'trigger': 'advance',
-            'source': 'state2',
-            'dest': 'state12',
-            'conditions': 'is_going_to_state12'
-                },
-        {
-            'trigger': 'advance',
-            'source': 'state12',
-            'dest': 'state13',
-            'conditions': 'is_going_to_state13',
-                },
-        {
-            'trigger': 'advance',
-            'source': 'state13',
-            'dest': 'state16',
-            'conditions': 'is_going_to_state16',
-                },
         # go back
         {     
             'trigger': 'go_back',
@@ -179,13 +153,6 @@ machine = TocMachine(
             'source': 'state10',
             'dest': 'state2',
             },
-        {
-            'trigger': 'go_back',
-            'source': [
-                'state16',
-                ],
-            'dest': 'state12'
-                },
     ],
     initial = 'state0',
     auto_transitions=False,
@@ -220,4 +187,4 @@ def show_fsm():
 
 if __name__ == "__main__":
     _set_webhook()
-    app.run(debug=True)
+app.run()

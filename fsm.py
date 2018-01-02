@@ -41,7 +41,7 @@ class TocMachine(GraphMachine):
         return text.lower() == '/new'
 
     def on_enter_state1(self, update):
-        ret = TAMAGOCHI() + "\n來與蛋子做點事情吧\n開始冒險?[y/n]\n"
+        ret = TAMAGOCHI() + "\n來與蛋子做點事情吧\n開始冒險?[2]\n"
         update.message.reply_text(ret)
         self.go_back(update)
 
@@ -49,7 +49,7 @@ class TocMachine(GraphMachine):
     # intro
     def is_going_to_state2(self, update):
         text = update.message.text
-        return text.lower() == 'y'
+        return text.lower() == '2'
     
     def on_enter_state2(self, update):
 #        if Lp<0 or Hp<0 or Lk<0:

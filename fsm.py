@@ -145,7 +145,7 @@ class TocMachine(GraphMachine):
         text = update.message.text
         return text.lower() == str(guess_number)
     def on_enter_state16(self, update):
-        update.message.reply_text("你好棒\n繼續遊戲嗎？[y/n]=[12/2]")
+        update.message.reply_text("你好棒")
 
     # back to option
     def is_going_to_state10(self, update):

@@ -104,11 +104,11 @@ class TocMachine(GraphMachine):
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
 
     # DIE
-    def is_going_to_DIE(self, update):
+    def is_going_to_state11(self, update):
         if Lp<0 or Hp<0 or Lk<0:
             update.message.reply_text("TAMAGOCHI IS DEAD")
 
-    def on_enter_DIE(self, update):
+    def on_enter_state11(self, update):
         update.message.reply_text("DIE")
         self.go_back(update)
 

@@ -1,4 +1,5 @@
 from transitions.extensions import GraphMachine
+import random
 
 Hp = 60
 Lp = 60
@@ -29,7 +30,8 @@ class TocMachine(GraphMachine):
             model = self,
             **machine_configs
         )
-
+    
+    guess_number = 0
 
     # new
     def is_going_to_state0(self, update):
@@ -55,7 +57,7 @@ class TocMachine(GraphMachine):
 #        if Lp<0 or Hp<0 or Lk<0:
 #            self.go_back(update)
 #        else:
-        update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        update.message.reply_text("[3] 吃點什麼\n[12] 玩遊戲\n[] 打掃&睡覺\n")
     
     # A
     def is_going_to_state3(self, update):
@@ -116,6 +118,35 @@ class TocMachine(GraphMachine):
     def on_enter_state11(self, update):
         update.message.reply_text("DIE")
         self.go_back(update)
+
+    def is_going_to_state12(self, update):
+        text = update.message.text
+        return text.lower() == '12'
+    def on_enter_state12(self, update):
+        ret = '[13] 猜數字\n[14] 加法練習\n'
+        update.message.reply_text("[13] 猜數字\n[14] 加法練習\n")
+
+    # guess number
+    def is_going_to_state13(self, update):
+        text = update.message.text
+        return text.lower() == '13'
+
+    def on_enter_state13(self, update):
+        update.message.reply_text("請從1~20中猜一個數字\n")
+        guess_number = random.randint(1,20)
+
+    def is_going_to_state15(self, update):
+        text = update.message.text
+        return text.lower() != str(guess_number)
+    def on_enter_state15(self, update):
+        update.message.reply_text("你超爛")
+        self.go_back(update)
+    
+    def is_going_to_state16(self, update):
+        text = update.message.text
+        return text.lower() == str(guess_number)
+    def on_enter_state16(self, update):
+        update.message.reply_text("你好棒\n繼續遊戲嗎？[y/n]=[12/2]")
 
     # back to option
     def is_going_to_state10(self, update):

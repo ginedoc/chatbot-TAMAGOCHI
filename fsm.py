@@ -123,7 +123,6 @@ class TocMachine(GraphMachine):
         text = update.message.text
         return text.lower() == '12'
     def on_enter_state12(self, update):
-        ret = '[13] 猜數字\n[14] 加法練習\n [2] 離開'
         update.message.reply_text("[13] 猜數字\n[14] 加法練習\n")
 
     # guess number
@@ -132,8 +131,8 @@ class TocMachine(GraphMachine):
         return text.lower() == '13'
 
     def on_enter_state13(self, update):
-        update.message.reply_text("請從1~20中猜一個數字\n")
         guess_number = random.randint(1,20)
+        update.message.reply_text("請從1~20中猜一個數字\n")
 
     def is_going_to_state15(self, update):
         text = update.message.text

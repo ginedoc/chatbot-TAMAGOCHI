@@ -168,7 +168,7 @@ machine = TocMachine(
                 },
         {
             'trigger': 'advance',
-            'source': 'state15',
+            'source': 'state13',
             'dest': 'state15',
             'conditions': 'is_going_to_state15',
                 },

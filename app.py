@@ -62,7 +62,6 @@ machine = TocMachine(
                 'state0',
                 'state3',
                 'state12'
-                'state16',
                 ],
             'dest': 'state2', 
             'conditions': 'is_going_to_state2'
@@ -150,30 +149,30 @@ machine = TocMachine(
 	    'conditions': 'is_going_to_state0',
 		},
         # option B
-        {
-            'trigger': 'advance',
-            'source': 'state2',
-            'dest': 'state12',
-            'conditions': 'is_going_to_state12'
-                },
-        {
-            'trigger': 'advance',
-            'source': 'state12',
-            'dest': 'state13',
-            'conditions': 'is_going_to_state13',
-                },
-        {
-            'trigger': 'advance',
-            'source': 'state13',
-            'dest': 'state15',
-            'conditions': 'is_going_to_state15',
-                },
-        {
-            'trigger': 'advance',
-            'source': 'state13',
-            'dest': 'state16',
-            'conditions': 'is_going_to_state16',
-                },
+#        {
+#            'trigger': 'advance',
+#            'source': 'state2',
+#            'dest': 'state12',
+#            'conditions': 'is_going_to_state12'
+#                },
+#        {
+#            'trigger': 'advance',
+#            'source': 'state12',
+#            'dest': 'state13',
+#            'conditions': 'is_going_to_state13',
+#                },
+#        {
+#            'trigger': 'advance',
+#            'source': 'state13',
+#            'dest': 'state15',
+#            'conditions': 'is_going_to_state15',
+#                },
+#        {
+#            'trigger': 'advance',
+#            'source': 'state13',
+#            'dest': 'state16',
+#            'conditions': 'is_going_to_state16',
+#                },
         # go back
         {     
             'trigger': 'go_back',
@@ -187,14 +186,14 @@ machine = TocMachine(
             'source': 'state10',
             'dest': 'state2',
             },
-        {
-            'trigger': 'go_back',
-            'source': [
-                'state15',
-                'state16',
-                ],
-            'dest': 'state12'
-                },
+#        {
+#            'trigger': 'go_back',
+#            'source': [
+#                'state15',
+#                'state16',
+#                ],
+#            'dest': 'state12'
+#                },
     ],
     initial = 'state0',
     auto_transitions=False,

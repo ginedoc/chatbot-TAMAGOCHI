@@ -30,8 +30,6 @@ class TocMachine(GraphMachine):
             **machine_configs
         )
 
-    def on_enter_state0(self, update):
-        update.message.reply_text("on state 0")
 
     # new
     def is_going_to_state1(self, update):
@@ -39,11 +37,9 @@ class TocMachine(GraphMachine):
         return text.lower() == '/new'
 
     def on_enter_state1(self, update):
-        self.go_back(update)
-
-    def on_exit_state1(self, update):
         ret = TAMAGOCHI() + "\n來與蛋子做點事情吧\n開始冒險?[y/n]\n"
         update.message.reply_text(ret)
+        self.go_back(update)
 
 
     # intro
@@ -108,6 +104,10 @@ class TocMachine(GraphMachine):
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
 
     # DIE
+    def is_going_to_DIE(self, update):
+        if Lp<0 or Hp<0 or Lk<0:
+            update.message.reply_text("TAMAGOCHI IS DEAD")
+
     def on_enter_DIE(self, update):
         update.message.reply_text("DIE")
         self.go_back(update)

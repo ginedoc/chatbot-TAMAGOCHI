@@ -32,10 +32,9 @@ class TocMachine(GraphMachine):
 
 
     # new
-
-    def is_going_to_state0(self, update):	
-		text = update.message.text		
-		return text.lower() == '/restart'
+    def is_going_to_state0(self, update):
+        text = update.message.text
+        return text.lower() == '/restart'
 
     def is_going_to_state1(self, update):
         text = update.message.text
@@ -56,7 +55,7 @@ class TocMachine(GraphMachine):
 #        if Lp<0 or Hp<0 or Lk<0:
 #            self.go_back(update)
 #        else:
-		update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
     
     # A
     def is_going_to_state3(self, update):
@@ -111,7 +110,7 @@ class TocMachine(GraphMachine):
     # DIE
     def is_going_to_state11(self, update):
         if Lp<0 or Hp<0 or Lk<0:
-		return '11'
+            return '11'
 #            update.message.reply_text("TAMAGOCHI IS DEAD")
 
     def on_enter_state11(self, update):

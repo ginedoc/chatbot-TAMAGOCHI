@@ -61,6 +61,8 @@ machine = TocMachine(
             'trigger': 'advance', 
             'source': [
                 'state0',
+                'state3',
+                'state12'
                 'state16',
                 ],
             'dest': 'state2', 

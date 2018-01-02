@@ -10,7 +10,7 @@ from fsm import TocMachine
 
 
 API_TOKEN = '374041751:AAHZKYm_SFiSDz7nZEsURqRyblxDnbTB_v0'
-WEBHOOK_URL = 'https://2b218dac.ngrok.io/hook'
+WEBHOOK_URL = 'https://aef84329.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -134,12 +134,17 @@ machine = TocMachine(
             'dest': 'state11',
             'conditions': 'is_going_to_state11',
                 },
+	{
+	    'trigger': 'advance',
+	    'source': 'state11',
+	    'dest': 'state0',
+	    'conditions': 'is_going_to_state0',
+		},
         # go back
         {     
             'trigger': 'go_back',
             'source': [
                 'state1',
-                'state11',
                 ],
             'dest': 'state0'
             },

@@ -147,5 +147,10 @@ class TocMachine(GraphMachine):
             update.message.reply_text("酒足飯飽^^")
         self.go_back(update)
 
+    # force ext
+    def force_exit(self, update):
+        text = update.message.text
+        return text.lower() == '/exit'
+
 
 

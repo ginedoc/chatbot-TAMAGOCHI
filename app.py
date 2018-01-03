@@ -145,7 +145,7 @@ machine = TocMachine(
             'trigger': 'go_back',
             'source': [
                 'state1',
-		'state11',
+				'state11',
                 ],
             'dest': 'state0'
             },
@@ -154,22 +154,6 @@ machine = TocMachine(
             'source': 'state10',
             'dest': 'state2',
             },
-        {
-            'trigger': 'advance',
-            'source': [
-                    'state2'
-                    'state3',
-                    'state4',
-                    'state5',
-                    'state6',
-                    'state7',
-                    'state8',
-                    'state9',
-                    'state10',
-                ],
-            'dest': 'state0',
-            'conditions': 'force_exit',
-                },
     ],
     initial = 'state0',
     auto_transitions=False,
@@ -205,3 +189,4 @@ def show_fsm():
 if __name__ == "__main__":
     _set_webhook()
 app.run()
+

@@ -70,6 +70,9 @@ class TocMachine(GraphMachine):
         return text.lower() == '4'
 
     def on_enter_state4(self, update):  ## bendong
+        Lp = Lp + 5
+        Hp = Hp + 5
+        Lk = Lk - 1
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
 
     # B
@@ -77,34 +80,49 @@ class TocMachine(GraphMachine):
         text = update.message.text
         return text.lower() == '5'
     def on_enter_state5(self, update):  ## fast_food
+        Lp = Lp - 5
+        Hp = Hp - 5
+        Lk = Lk + 10
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
 
     # C
     def is_going_to_state6(self, update):
         text = update.message.text
         return text.lower() == '6'
-    def on_enter_state6(self, update):  ## fast_food
+    def on_enter_state6(self, update):  ## steak
+        Lp = Lp + 10
+        Hp = Hp + 5
+        Lk = Lk + 5
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
     
     # D
     def is_going_to_state7(self, update):
         text = update.message.text
         return text.lower() == '7'
-    def on_enter_state7(self, update):  ## fast_food
+    def on_enter_state7(self, update):  ## bread
+        Lp = Lp + 5
+        Hp = Hp + 10
+        Lk = Lk - 5
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
     
     # E
     def is_going_to_state8(self, update):
         text = update.message.text
         return text.lower() == '8'
-    def on_enter_state8(self, update):  ## fast_food
+    def on_enter_state8(self, update):  ## instant noodle
+        Lp = Lp - 5
+        Hp = Hp - 5
+        Lk = Lk + 10
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
 
     # F
     def is_going_to_state9(self, update):
         text = update.message.text
         return text.lower() == '9'
-    def on_enter_state9(self, update):  ## fast_food
+    def on_enter_state9(self, update):  ## snack
+        Lp = Lp-5
+        Hp = Hp-5
+        Lk = Lk+5
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
 
     # DIE
@@ -119,14 +137,14 @@ class TocMachine(GraphMachine):
 
     # back to option
     def is_going_to_state10(self, update):
-        if Lp<=50:
-            print("Lp<50")
-        else: 
-            print("Lp>50")
         text = update.message.text
         return text.lower() == '10'
 
     def on_enter_state10(self, update):
+        if Lp<=50:
+            update.message.reply_text("還沒吃飽拉QQ")
+        else: 
+            update.message.reply_text("酒足飯飽^^")
         self.go_back(update)
 
 

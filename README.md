@@ -4,9 +4,10 @@
 pip install -r requirements.txt
 
 ## EXECUTE
-1. open ngrok as gate (at socket 5000)
+1. fill out your [API_TOKEN] & [WEBHOOK_URL] in **app.py** (line 12, 13)
+2. open ngrok as gate (at socket 5000)
  > ./ngrok http 5000
-2. run app.py code (under python3)
+3. run app.py code (under python3)
  > python3 app.py
 
 ## FSM

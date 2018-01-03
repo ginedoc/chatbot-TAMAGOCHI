@@ -55,7 +55,8 @@ class TocMachine(GraphMachine):
 #        if Lp<0 or Hp<0 or Lk<0:
 #            self.go_back(update)
 #        else:
-        update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        ret = TAMAGOCHI() + "[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        update.message.reply_text(ret)
     
     # A
     def is_going_to_state3(self, update):

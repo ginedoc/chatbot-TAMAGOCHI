@@ -1,4 +1,5 @@
 from transitions.extensions import GraphMachine
+import time
 
 Hp = 60
 Lp = 60
@@ -36,6 +37,9 @@ class TocMachine(GraphMachine):
 #        text = update.message.text
 #        return text.lower() == '/restart'
 
+    def on_enter_state0(self, update):
+    	time.sleep(2)
+
     def is_going_to_state1(self, update):
         text = update.message.text
         return text.lower() == '/new'
@@ -52,10 +56,10 @@ class TocMachine(GraphMachine):
         return text.lower() == 'y'
     
     def on_enter_state2(self, update):
-#        if Lp<0 or Hp<0 or Lk<0:
-#            self.go_back(update)
-#        else:
-        update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        if Lp<0 or Hp<0 or Lk<0:
+            self.go_back(update)
+        else:
+            update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
     
     # A
     def is_going_to_state3(self, update):
@@ -72,6 +76,7 @@ class TocMachine(GraphMachine):
 
     def on_enter_state4(self, update):  ## bendong
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        global Lp, Hp, Lk
         Lp=Lp+5
         Hp=Hp+5
         Lk=Lk-1
@@ -82,6 +87,7 @@ class TocMachine(GraphMachine):
         return text.lower() == '5'
     def on_enter_state5(self, update):  ## fast_food
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        global Lp, Hp, Lk
         Lp=Lp-5
         Hp=Hp-5
         Lk=Lk+10
@@ -92,6 +98,7 @@ class TocMachine(GraphMachine):
         return text.lower() == '6'
     def on_enter_state6(self, update):  ## steak
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        global Lp, Hp, Lk
         Lp=Lp+5
         Hp=Hp-5
         Lk=Lk-1
@@ -102,6 +109,7 @@ class TocMachine(GraphMachine):
         return text.lower() == '7'
     def on_enter_state7(self, update):  ## bread
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        global Lp, Hp, Lk
         Lp=Lp+5
         Hp=Hp+1
         Lk=Lk-5
@@ -112,6 +120,7 @@ class TocMachine(GraphMachine):
         return text.lower() == '8'
     def on_enter_state8(self, update):  ## fast_food
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        global Lp, Hp, Lk
         Hp=Hp-10
         Lp=Lp-10
         Lk=Lk+5
@@ -122,6 +131,7 @@ class TocMachine(GraphMachine):
         return text.lower() == '9'
     def on_enter_state9(self, update):  ## snack
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        global Lp, Hp, Lk
         Hp=Hp-5
         Lp=Lp-5
         Lk=Lk+5

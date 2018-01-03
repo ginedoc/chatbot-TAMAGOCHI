@@ -191,7 +191,7 @@ class TocMachine(GraphMachine):
         text = update.message.text
         return text.lower() == '16'
     def on_enter_state16(self, update):
-        update.message.reply_text("http://www.google.com")
+        update.message.reply_text("www.google.com")
         self.go_back(update)
 
     def force_exit(self, update):

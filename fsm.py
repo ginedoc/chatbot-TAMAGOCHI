@@ -59,7 +59,7 @@ class TocMachine(GraphMachine):
         if Lp<0 or Hp<0 or Lk<0:
             self.go_back(update)
         else:
-            update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[12] 來點其他的\n")
+            update.message.reply_text("[3] 吃點什麼\n[17] 講個笑話R\n[12] 來點其他的\n")
     
     # A
     def is_going_to_state3(self, update):
@@ -170,7 +170,11 @@ class TocMachine(GraphMachine):
         return text.lower() == '13'
 
     def on_enter_state13(self, update):
-        update.message.reply_text("睡寶寶^^")
+        update.message.reply_text("睡飽飽^^")
+        global Hp, Lp, Lk
+        Hp = Hp + 10
+        Lp = Lp + 10
+        Lk = Lk + 10
         self.go_back(update)
 
     def is_going_to_state14(self, update):
@@ -185,6 +189,10 @@ class TocMachine(GraphMachine):
         return text.lower() == '15'
     def on_enter_state15(self, update):
         update.message.reply_text("http://www.facebook.com")
+        global Lk, Hp, Lp
+        Lk = Lk + 5
+        Hp = Hp - 5
+        Lp = Lp - 5
         self.go_back(update)
 
     def is_going_to_state16(self, update):
@@ -192,6 +200,25 @@ class TocMachine(GraphMachine):
         return text.lower() == '16'
     def on_enter_state16(self, update):
         update.message.reply_text("www.google.com")
+        global Lk, Hp, Lp
+        Lk = Lk + 5
+        Hp = Hp - 5
+        Lp = Lp - 5
+        self.go_back(update)
+
+    def is_going_to_state17(self, update):
+        text = update.message.text
+        return text.lower() == '17'
+    def on_enter_state17(self, update):
+        dice = random.randint(0,4)
+        if dice == 1:
+            update.message.reply_text("ｘｘ個人電腦維修工作室\n這天半夜有個客人打電話來問說\n客人：「ｘｘ電腦維修公司嗎？」\n工程師：「是的！請問客人有什麼問題？」\n客人：「我的電腦不能開機。」\n工程師：「您電源插頭有插嗎？」\n客人：「有的。」\n工程師：「請檢查一下ｐｏｗｅｒ電源插頭是否有鬆落，接觸不良。」\n客人：「沒！」\n工程師：「那請您拿出紙、筆來。」\n客人：「喔好。稍等一下，我先找一下拿手電筒。」\n工程師：「為什麼要拿手電筒？」\n客人：「我家停電啊！」\n工程師：「…………」\n")
+        elif dice == 2:
+            update.message.reply_text("明明:我爸爸在公車上會讓人,你爸爸會嗎?\n笑笑:不會.\n明明:為什麼?\n笑笑:因為,他是公車師機.")
+        elif dice == 3:
+            update.message.reply_text("第一天上學的小朋友哭的很可憐，老師問他原因，他說：「我不喜歡學校，可是以後我得天天來這你，一直到15歲。」老師安慰她道：「我比你更可憐，我得天天來這裡，一直到60歲呢！」")
+        else:
+            update.message.reply_text("突然想不到笑話拉>.<")
         self.go_back(update)
 
     def force_exit(self, update):

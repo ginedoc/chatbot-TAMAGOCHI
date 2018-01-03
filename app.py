@@ -48,6 +48,7 @@ machine = TocMachine(
         'state14',
         'state15',
         'state16',
+        'state17',
     ],
     transitions=[
         # intro
@@ -165,6 +166,13 @@ machine = TocMachine(
             'dest': 'state16',
             'conditions': 'is_going_to_state16'
         },
+        # opion B
+        {
+            'trigger': 'advance',
+            'source': 'state2',
+            'dest': 'state17',
+            'conditions': 'is_going_to_state17',
+        },
         # exit
         {
             'trigger': 'advance',
@@ -209,6 +217,7 @@ machine = TocMachine(
                     'state13',
                     'state15',
                     'state16',
+                    'state17',
                 ],
             'dest': 'state2',
         },

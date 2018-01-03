@@ -32,9 +32,9 @@ class TocMachine(GraphMachine):
 
 
     # new
-    def is_going_to_state0(self, update):
-        text = update.message.text
-        return text.lower() == '/restart'
+#    def is_going_to_state0(self, update):
+#        text = update.message.text
+#        return text.lower() == '/restart'
 
     def is_going_to_state1(self, update):
         text = update.message.text

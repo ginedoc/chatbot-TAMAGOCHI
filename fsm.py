@@ -33,12 +33,12 @@ class TocMachine(GraphMachine):
 
 
     # new
-#    def is_going_to_state0(self, update):
-#        text = update.message.text
-#        return text.lower() == '/restart'
 
     def on_enter_state0(self, update):
-     	time.sleep(2)
+        global Lp, Hp, Lk
+        Lp = 60
+        Hp = 60
+        Lk = 60
 
     def is_going_to_state1(self, update):
         text = update.message.text
@@ -59,7 +59,7 @@ class TocMachine(GraphMachine):
         if Lp<0 or Hp<0 or Lk<0:
             self.go_back(update)
         else:
-            update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+            update.message.reply_text("[3] 吃點什麼\n[4] 玩遊戲\n[12] 來點其他的\n")
     
     # A
     def is_going_to_state3(self, update):
@@ -158,3 +158,42 @@ class TocMachine(GraphMachine):
     def on_enter_state10(self, update):
         self.go_back(update)
 
+    def is_going_to_state12(self, update):
+        text = update.message.text
+        return text.lower() == '12'
+
+    def on_enter_state12(self, update):
+        update.message.reply_text("[13] 睡覺\n[14] 滑手機\n")
+
+    def is_going_to_state13(self, update):
+        text = update.message.text
+        return text.lower() == '13'
+
+    def on_enter_state13(self, update):
+        update.message.reply_text("睡寶寶^^")
+        self.go_back(update)
+
+    def is_going_to_state14(self, update):
+        text = update.message.text
+        return text.lower() == '14'
+
+    def on_enter_state14(self, update):
+        update.message.reply_text("[15] FB\n[16] Google\n")
+
+    def is_going_to_state15(self, update):
+        text = update.message.text
+        return text.lower() == '15'
+    def on_enter_state15(self, update):
+        update.message.reply_text("http://www.facebook.com")
+        self.go_back(update)
+
+    def is_going_to_state16(self, update):
+        text = update.message.text
+        return text.lower() == '16'
+    def on_enter_state16(self, update):
+        update.message.reply_text("http://www.google.com")
+        self.go_back(update)
+
+    def force_exit(self, update):
+        text = update.message.text
+        return text.lower() == '/exit'

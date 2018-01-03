@@ -10,7 +10,7 @@ from fsm import TocMachine
 
 
 API_TOKEN = '383745047:AAG-amRDwnRxdm9NpVaEbZIX-IegmuEgJnk'
-WEBHOOK_URL = 'https://3a2ff9d9.ngrok.io/hook'
+WEBHOOK_URL = 'https://50862b2c.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -43,6 +43,11 @@ machine = TocMachine(
         'state9',
         'state10',
         'state11',
+        'state12',
+        'state13',
+        'state14',
+        'state15',
+        'state16',
     ],
     transitions=[
         # intro
@@ -129,19 +134,62 @@ machine = TocMachine(
             'dest': 'state9',
             'conditions': 'is_going_to_state9',
         },
-        # DIE
-#       {
-#           'trigger': 'advance',
-#           'source': 'state2',
-#           'dest': 'state11',
-#           'conditions': 'is_going_to_state11',
-#               },
-#	{
-#	    'trigger': 'advance',
-#	    'source': 'state11',
-#	    'dest': 'state0',
-#	    'conditions': 'is_going_to_state0',
-#		},
+        # option c
+        {
+            'trigger': 'advance',
+            'source': 'state2',
+            'dest': 'state12',
+            'conditions': 'is_going_to_state12',
+        },
+        {
+            'trigger': 'advance',
+            'source': 'state12',
+            'dest': 'state13',
+            'conditions': 'is_going_to_state13',
+        },
+        {
+            'trigger': 'advance',
+            'source': 'state12',
+            'dest': 'state14',
+            'conditions': 'is_going_to_state14',
+        },
+        {
+            'trigger': 'advance',
+            'source': 'state14',
+            'dest': 'state15',
+            'conditions': 'is_going_to_15'
+        },
+        {
+            'trigger': 'advance',
+            'source': 'state14',
+            'dest': 'state16',
+            'conditions': 'is_going_to_16'
+        },
+        # exit
+        {
+            'trigger': 'advance',
+            'source':
+                [
+                    'state1',
+                    'state2',
+                    'state3',
+                    'state4',
+                    'state5',
+                    'state6',
+                    'state7',
+                    'state8',
+                    'state9',
+                    'state10',
+                    'state11',
+                    'state12',
+                    'state13',
+                    'state14',
+                    'state15',
+                    'state16',
+                ],
+            'dest': 'state0',
+            'conditions': 'force_exit',
+        },
         # go back
         {     
             'trigger': 'go_back',
@@ -155,7 +203,13 @@ machine = TocMachine(
             },
         {
             'trigger': 'go_back',
-            'source': 'state10',
+            'source':
+                [
+                    'state10',
+                    'state13',
+                    'state15',
+                    'state16',
+                ],
             'dest': 'state2',
         },
         {

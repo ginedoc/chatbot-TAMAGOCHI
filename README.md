@@ -6,6 +6,8 @@ pip install -r requirements.txt
 ## FSM
 * ![fsm](./img/show-fsm.png)
 
+## screenshot
+![screenshot](./img/screenshot.png)
 ## desctiption
 
 * 開始新遊戲請輸入 /new

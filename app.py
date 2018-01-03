@@ -1,4 +1,4 @@
-#import imp
+import imp
 import sys
 from io import BytesIO
 
@@ -9,8 +9,8 @@ from fsm import TocMachine
 
 
 
-API_TOKEN = '374041751:AAHZKYm_SFiSDz7nZEsURqRyblxDnbTB_v0'
-WEBHOOK_URL = 'https://6699beff.ngrok.io/hook'
+API_TOKEN = '383745047:AAG-amRDwnRxdm9NpVaEbZIX-IegmuEgJnk'
+WEBHOOK_URL = 'https://3a2ff9d9.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -51,89 +51,91 @@ machine = TocMachine(
             'source': 'state0', 
             'dest': 'state1', 
             'conditions': 'is_going_to_state1'
-            },
+        },
         {
             'trigger': 'advance', 
             'source': 'state0', 
             'dest': 'state2', 
             'conditions': 'is_going_to_state2'
-            },
+        },
         # A
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state4',
             'conditions': 'is_going_to_state4',
-            },
+        },
         {
             'trigger': 'advance', 
-            'source': [
-                'state4', 
-                'state5',
-                'state6',
-                'state7',
-                'state8',
-                'state9',
+            'source': 
+                [
+                    'state4', 
+                    'state5',
+                    'state6',
+                    'state7',
+                    'state8',
+                    'state9',
                 ],
             'dest': 'state10',
             'conditions': 'is_going_to_state10',
-            },
+        },
         {
             'trigger': 'advance', 
-            'source': [
-                'state2',
-                'state4', 
-                'state5',
-                'state6',
-                'state7',
-                'state8',
-                'state9',
+            'source': 
+                [
+                    'state2',
+                    'state4', 
+                    'state5',
+                    'state6',
+                    'state7',
+                    'state8',
+                    'state9',
                 ],
             'dest': 'state3',
             'conditions': 'is_going_to_state3',
-            },
+        },
         # B
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state5',
             'conditions': 'is_going_to_state5',
-            },
+        },
         # C
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state6',
             'conditions': 'is_going_to_state6',
-            },
+        },
         # D
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state7',
             'conditions': 'is_going_to_state7',
-            },
+        },
         # E
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state8',
             'conditions': 'is_going_to_state8',
-            },
+        },
         # F
         {
             'trigger': 'advance',
             'source': 'state3',
             'dest': 'state9',
             'conditions': 'is_going_to_state9',
-            },
+        },
         # DIE
-        {
-            'trigger': 'advance',
-            'source': 'state2',
-            'dest': 'state11',
-            'conditions': 'is_going_to_state11',
-                },
+#       {
+#           'trigger': 'advance',
+#           'source': 'state2',
+#           'dest': 'state11',
+#           'conditions': 'is_going_to_state11',
+#               },
 #	{
 #	    'trigger': 'advance',
 #	    'source': 'state11',
@@ -143,9 +145,11 @@ machine = TocMachine(
         # go back
         {     
             'trigger': 'go_back',
-            'source': [
-                'state1',
-		'state11',
+            'source': 
+                [
+#				    'state0',
+                    'state1',
+		     	    'state11',
                 ],
             'dest': 'state0'
             },
@@ -153,7 +157,12 @@ machine = TocMachine(
             'trigger': 'go_back',
             'source': 'state10',
             'dest': 'state2',
-            },
+        },
+        {
+            'trigger': 'go_back',
+            'source': 'state2',
+            'dest': 'state11',
+        },
     ],
     initial = 'state0',
     auto_transitions=False,

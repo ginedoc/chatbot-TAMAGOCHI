@@ -38,11 +38,11 @@ class TocMachine(GraphMachine):
 #        return text.lower() == '/restart'
 
     def on_enter_state0(self, update):
-    	time.sleep(2)
+     	time.sleep(2)
 
     def is_going_to_state1(self, update):
         text = update.message.text
-        return text.lower() == '/new'
+        return text.lower() == '/start'
 
     def on_enter_state1(self, update):
         ret = TAMAGOCHI() + "\n來與蛋子做點事情吧\n開始冒險?[y/n]\n"

@@ -55,7 +55,7 @@ class TocMachine(GraphMachine):
 #        if Lp<0 or Hp<0 or Lk<0:
 #            self.go_back(update)
 #        else:
-        ret = TAMAGOCHI() + "[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n")
+        ret = TAMAGOCHI() + "[3] 吃點什麼\n[4] 玩遊戲\n[5] 打掃\n"
         update.message.reply_text(ret)
     
     # A
@@ -67,64 +67,64 @@ class TocMachine(GraphMachine):
         update.message.reply_text("[4]便當\n[5]速食\n[6]牛排\n[7]麵包\n[8]泡麵\n[9]點心\n")
 
     def is_going_to_state4(self, update):
-        Lp = Lp + 5
-        Hp = Hp + 5
-        Lk = Lk - 1
         text = update.message.text
         return text.lower() == '4'
 
     def on_enter_state4(self, update):  ## bendong
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        Lp = Lp + 5
+        Hp = Hp + 5
+        Lk = Lk - 1
 
     # B
     def is_going_to_state5(self, update):
-        Lp = Lp - 5
-        Hp = Hp - 5
-        Lk = Lk + 10
         text = update.message.text
         return text.lower() == '5'
     def on_enter_state5(self, update):  ## fast_food
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        Lp = Lp - 5
+        Hp = Hp - 5
+        Lk = Lk + 10
 
     # C
     def is_going_to_state6(self, update):
-        Lp = Lp + 10
-        Hp = Hp + 5
-        Lk = Lk + 5
         text = update.message.text
         return text.lower() == '6'
     def on_enter_state6(self, update):  ## steak
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        Lp = Lp + 10
+        Hp = Hp + 5
+        Lk = Lk + 5
     
     # D
     def is_going_to_state7(self, update):
-        Lp = Lp + 5
-        Hp = Hp + 10
-        Lk = Lk - 5
         text = update.message.text
         return text.lower() == '7'
     def on_enter_state7(self, update):  ## bread
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        Lp = Lp + 5
+        Hp = Hp + 10
+        Lk = Lk - 5
     
     # E
     def is_going_to_state8(self, update):
-        Lp = Lp - 5
-        Hp = Hp - 5
-        Lk = Lk + 10
         text = update.message.text
         return text.lower() == '8'
     def on_enter_state8(self, update):  ## instant noodle
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        Lp = Lp - 5
+        Hp = Hp - 5
+        Lk = Lk + 10
 
     # F
     def is_going_to_state9(self, update):
-        Lp = Lp-5
-        Hp = Hp-5
-        Lk = Lk+5
         text = update.message.text
         return text.lower() == '9'
     def on_enter_state9(self, update):  ## snack
         update.message.reply_text("[3]繼續餵食\n[10]停止餵食\n")
+        Lp = Lp-5
+        Hp = Hp-5
+        Lk = Lk+5
 
     # DIE
     def is_going_to_state11(self, update):

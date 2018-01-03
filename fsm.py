@@ -1,5 +1,6 @@
 from transitions.extensions import GraphMachine
 import time
+import random
 
 Hp = 60
 Lp = 60
@@ -210,7 +211,7 @@ class TocMachine(GraphMachine):
         text = update.message.text
         return text.lower() == '17'
     def on_enter_state17(self, update):
-        dice = random.randint(0,4)
+        dice = random.randint(0,3)
         if dice == 1:
             update.message.reply_text("ｘｘ個人電腦維修工作室\n這天半夜有個客人打電話來問說\n客人：「ｘｘ電腦維修公司嗎？」\n工程師：「是的！請問客人有什麼問題？」\n客人：「我的電腦不能開機。」\n工程師：「您電源插頭有插嗎？」\n客人：「有的。」\n工程師：「請檢查一下ｐｏｗｅｒ電源插頭是否有鬆落，接觸不良。」\n客人：「沒！」\n工程師：「那請您拿出紙、筆來。」\n客人：「喔好。稍等一下，我先找一下拿手電筒。」\n工程師：「為什麼要拿手電筒？」\n客人：「我家停電啊！」\n工程師：「…………」\n")
         elif dice == 2:

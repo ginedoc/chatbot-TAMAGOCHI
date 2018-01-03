@@ -3,13 +3,27 @@
 ## Install 
 pip install -r requirements.txt
 
+## EXECUTE
+1. open ngrok as gate (at socket 5000)
+ > ./ngrok http 5000
+2. run app.py code (under python3)
+ > python3 app.py
+
 ## FSM
 * ![fsm](./img/show-fsm.png)
 
 ## screenshot
 ![screenshot](./img/screenshot.png)
 ## desctiption
+### start
+* input **/start** at begining
+### in-game
+* follow the instruction in []
+* e.g. when u see : [15] 玩遊戲
+       input: 15 
+### TERMINATED
+* at any time when u want to exit the current game input **/exit** 
 
-* 開始新遊戲請輸入 /new
-* 依照當下狀態顯示之 [] 內數字進行輸入
-* 開始餵食電子雞
+## state detail
++---+---+
+| state |  description |
